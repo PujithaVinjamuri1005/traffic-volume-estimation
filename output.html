@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Traffic Volume Prediction Result</title>
+<style>
+body {
+    /* Ensure the background image path is correct and accessible. */
+    background-image: url("https://stat.overdrive.in/wp-content/uploads/2021/10/2021-jaguar-xf-facelift-india-01.jpg");
+    background-size: cover; /* Covers the entire background */
+    background-repeat: no-repeat; /* Prevents image repetition */
+    background-position: center center; /* Centers the image */
+    color: white; /* Set a default text color that contrasts with the image */
+    font-family: Arial, sans-serif; /* A more common and readable font */
+    display: flex; /* Use flexbox for centering content */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    margin: 0; /* Remove default body margin */
+}
+
+/* This .pd class seems like it was intended for padding, but applied to <b>,
+   it's not having the desired effect for layout.
+   Instead, we'll style a container or the text directly. */
+.result-container {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background for readability */
+    padding: 30px 50px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    font-size: 3em; /* Larger heading */
+    margin-bottom: 20px;
+    color: #4CAF50; /* A green color for the heading */
+}
+
+p {
+    font-size: 1.8em; /* Larger paragraph text */
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.back-link {
+    display: inline-block; /* Make the link a block to give it padding/margin */
+    padding: 12px 25px;
+    background-color: #007bff; /* A nice blue for the button */
+    color: white;
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.back-link:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+</style>
+</head>
+<body>
+
+<div class="result-container">
+    <h1>Traffic Volume Prediction</h1>
+    <p>{{ prediction_text }}</p>
+    <a href="/" class="back-link">Go Back to Home</a>
+</div>
+
+</body>
+</html>
