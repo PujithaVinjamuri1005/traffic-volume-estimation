@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Traffic Volume Estimation</title>
+    <style>
+        /* Your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://cdn.vox-cdn.com/thumbor/VoaRJFfkv7D6t1NSZwB3Pn86TDN=/0x78:3000x1766/1600x900/cdn.vox-cdn.com/uploads/chorus_image/image/44219366/72499026.0.0.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: black;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            font-size: 32px;
+            font-weight: bold;
+            color: black;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 100vh;
+            padding-left: 5%;
+        }
+        .form-section {
+            padding: 20px;
+            border-radius: 10px;
+            width: 320px;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        h3 {
+            text-align: center;
+            color: black;
+            animation: slideIn 1s ease-in-out;
+        }
+        label {
+            animation: fadeInUp 1.2s ease-in-out;
+            color: #333;
+            font-weight: bold;
+        }
+        input, select, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 12px;
+            font-size: 14px;
+            animation: fadeInUp 1.4s ease-in-out;
+        }
+        input, select {
+            padding: 6px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 8px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .error-message {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
+        }
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        @keyframes slideIn {
+            from {transform: translateY(-20px); opacity: 0;}
+            to {transform: translateY(0); opacity: 1;}
+        }
+        @keyframes fadeInUp {
+            from {transform: translateY(10px); opacity: 0;}
+            to {transform: translateY(0); opacity: 1;}
+        }
+    </style>
+</head>
+
+<body>
+<header>Traffic Volume Estimation</header>
+<div class="container">
+    <div class="form-section">
+        <h3>Please enter the following details</h3>
+        {% if error_message %}
+            <p class="error-message">{{ error_message }}</p>
+        {% endif %}
+
+        <form action="{{ url_for('predict') }}" method="post">
+           <label for="holiday">Holiday:</label>
+           <select id="holiday" name="holiday">
+               <option value="None">None</option>
+               <option value="Columbus Day">Columbus Day</option>
+               <option value="Veterans Day">Veterans Day</option>
+               <option value="Thanksgiving Day">Thanksgiving Day</option>
+               <option value="Christmas Day">Christmas Day</option>
+               <option value="New Years Day">New Years Day</option>
+               <option value="Washingtons Birthday">Washingtons Birthday</option>
+               <option value="Memorial Day">Memorial Day</option>
+               <option value="Independence Day">Independence Day</option>
+               <option value="State Fair">State Fair</option>
+               <option value="Labour Day">Labour Day</option>
+               <option value="Martin Luther King Jr Day">Martin Luther King Jr Day</option>
+           </select>
+
+            <label for="temp">Temperature (°C):</label>
+            <input type="number" name="temp" id="temp" placeholder="Temperature" required>
+
+            <label for="rain">Rainfall (mm):</label>
+            <input type="number" name="rain" id="rain" placeholder="Rainfall" min="0" required>
+
+            <label for="snow">Snowfall (mm):</label>
+            <input type="number" name="snow" id="snow" placeholder="Snowfall" min="0" required>
+
+            <label for="weather">Weather Condition:</label>
+            <select id="weather" name="weather">
+                <option value="Clouds">Clouds</option>
+                <option value="Rain">Rain</option>
+                <option value="Drizzle">Drizzle</option>
+                <option value="Mist">Mist</option>
+                <option value="Fog">Fog</option>
+                <option value="Thunderstorm">Thunderstorm</option>
+                <option value="Snow">Snow</option>
+                <option value="Smoke">Smoke</option>
+                <option value="Clear">Clear</option>
+            </select>
+
+            <label for="day">Day:</label>
+            <input type="number" name="day" id="day" min="1" max="31" placeholder="Day" required>
+
+            <label for="month">Month:</label>
+            <input type="number" name="month" id="month" min="1" max="12" placeholder="Month" required>
+
+            <label for="year">Year:</label>
+            <input type="number" name="year" id="year" min="2012" max="2022" placeholder="Year" required>
+
+            <label for="hours">Hour:</label>
+            <input type="number" name="hours" id="hours" min="0" max="23" placeholder="Hour" required>
+
+            <label for="minutes">Minutes:</label>
+            <input type="number" name="minutes" id="minutes" min="0" max="59" placeholder="Minutes" required>
+
+            <label for="seconds">Seconds:</label>
+            <input type="number" name="seconds" id="seconds" min="0" max="59" placeholder="Seconds" required>
+
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
